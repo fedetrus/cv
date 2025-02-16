@@ -1,0 +1,30 @@
+<!-- app_mock/main.html -->
+<!DOCTYPE html>
+
+{% load static %}
+
+<html data-theme="system">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'app_core/images/favicon.svg' %}" type="image/svg+xml" sizes="any">
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <title>Mock Federico Suárez</title>
+</head>
+
+<body>
+    <header>
+        {% include 'app_mock/header.html' %}
+    </header>
+
+    <main>
+        {% include 'app_mock/main.html' %}
+    </main>
+</body>
+
+</html>
