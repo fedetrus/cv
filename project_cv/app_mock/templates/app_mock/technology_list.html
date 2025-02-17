@@ -46,23 +46,23 @@
 <section class="hero is-small">
     <div class="hero-body">
         <div class="title">
-            Tecnologías <span class="subtitle"> que uso hasta el momento.</span>
+            Tecnologías<span class="subtitle"> que uso hasta el momento:</span>
         </div>
-
-        <div class="container is-flex is-flex-wrap-wrap">
+        <div class="container is-flex is-flex-wrap-wrap is-justify-content-center">
             {% for tech in technologies %}
-            <div class="block mx-4 is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
-                <figure class="image is-64x64">
-                    <!-- Para mostrar la imagen, utilizas 'tech.logo.url' -->
+            <div class="mx-2 is-flex is-flex-direction-column is-align-items-center">
+                <!-- Imagen: cambia de 32x32 en desktop a 16x16 en mobile -->
+                <figure class="image is-32x32">
                     <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
                 </figure>
-                <p class="subtitle mt-2">{{ tech.name|capfirst }}</p>
+                <!-- Texto: subtitle en desktop, normal en mobile -->
+                <p class="mt-2 subtitle is-hidden-mobile">{{ tech.name|capfirst }}</p>
+                <p class="my-1 is-hidden-tablet">{{ tech.name|capfirst }}</p>
             </div>
             {% endfor %}
         </div>
-
+        
     </div>
-
 </section>
 
 {% endblock %}
