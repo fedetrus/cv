@@ -1,6 +1,7 @@
-<!-- app_core/main.html -->
+<!-- app_mock/main.html -->
+{% load static %}
 
-<section class="hero">
+<section class="hero is-small">
     <div class="hero-body">
         <p class="title">
             Django Developer
@@ -13,7 +14,7 @@
     </div>
 </section>
 
-<section class="hero">
+<section class="hero is-small">
     <div class="hero-body">
         <p class="title">
             Proyectos
@@ -32,4 +33,90 @@
             </div>
         </div>
     </div>
+</section>
+
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="title">
+            Tecnologías
+        </div>
+
+        <div class="container is-flex is-justify-content-space-between is-flex-wrap-wrap">
+
+            <div class="block is-flex is-flex-direction-column is-justify-content-center">
+                <figure class="image is-64x64">
+                    <img src="{% static 'app_mock/logos/django.png' %}" alt="Django">
+                </figure>
+                <p class="subtitle has-text-left mt-3">
+                    Django
+                </p>
+            </div>
+
+            <div class="block is-flex is-flex-direction-column is-justify-content-center">
+                <figure class="image is-64x64">
+                    <img src="{% static 'app_mock/logos/python.png' %}" alt="Python">
+                </figure>
+                <p class="subtitle has-text-left mt-3">
+                    Python
+                </p>
+            </div>
+
+            <div class="block is-flex is-flex-direction-column is-justify-content-center">
+                <figure class="image is-64x64">
+                    <img src="{% static 'app_mock/logos/nginx.png' %}" alt="Nginx">
+                </figure>
+                <p class="subtitle has-text-left mt-3">
+                    Nginx
+                </p>
+            </div>
+
+            <div class="block">
+                <figure class="image is-64x64">
+                    <img src="{% static 'app_mock/logos/docker.png' %}" alt="Docker">
+                </figure>
+                <p class="subtitle has-text-left mt-3">
+                    Docker
+                </p>
+            </div>
+
+            <div class="block">
+                <figure class="image is-64x64">
+                    <img src="{% static 'app_mock/logos/pyside.png' %}" alt="Pyside">
+                </figure>
+                <p class="subtitle has-text-left mt-3">
+                    Pyside
+                </p>
+            </div>
+
+            <div class="block is-flex is-flex-direction-column is-justify-content-center ">
+                <figure class="image is-64x64">
+                    <img src="{% static 'app_mock/logos/postgre.png' %}" alt="PostgrSQL">
+                </figure>
+                <p class="subtitle has-text-left mt-3">
+                    PostgreSQL
+                </p>
+            </div>
+
+            <div class="block is-flex is-flex-direction-column">
+                <figure class="image is-64x64">
+                    <img src="{% static 'app_mock/logos/js.png' %}" alt="JavaScript">
+                </figure>
+                <p class="subtitle has-text-left mt-3">
+                    Java Script
+                </p>
+            </div>
+            
+            <div class="block">
+                <figure class="image is-64x64">
+                    <img src="{% static 'app_mock/logos/bulma.png' %}" alt="Bulma CSS">
+                </figure>
+                <p class="subtitle has-text-left mt-3">
+                    Bulma CSS
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+
 </section>
