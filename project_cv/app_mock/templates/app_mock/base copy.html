@@ -21,12 +21,12 @@
     <header>
         {% include 'app_mock/header.html' %}
     </header>
-
+    
     <div class="columns is-centered">
         <div class="column is-10">
-            {% block content %}
-                
-            {% endblock content %}
+            <main>
+                {% include 'app_mock/main.html' %}
+            </main>
         </div>
     </div>
 </body>

@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Technology
 
-# Create your views here.
+class TechnologyListView(ListView):
+    model = Technology
+    template_name = 'app_mock/technology_list.html'  # Nombre del template
+    context_object_name = 'technologies'  # Cómo se llamará el queryset en tu template
+

@@ -1,0 +1,68 @@
+{% extends 'app_mock/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- app_mock/main.html -->
+
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="is-flex is-align-items-center">
+            <figure class="image is-64x64">
+                <img src="{% static 'app_mock/logos/django.png' %}" alt="Django">
+            </figure>
+            <p class="title ml-3">
+                Developer
+            </p>
+        </div>
+        <p class="subtitle mt-4">
+            <strong>Crear</strong> y transformar <strong>software</strong>, en <strong>experiencias</strong> web
+            <strong>simples</strong>, <strong>limpias</strong> e
+            <strong>intuitivas</strong>.
+        </p>
+    </div>
+</section>
+
+<section class="hero is-small">
+    <div class="hero-body">
+        <p class="title">
+            Proyectos
+        </p>
+        <div class="columns">
+            <div class="column is-4">
+                {% include 'app_mock/card.html' %}
+            </div>
+    
+            <div class="column is-4">
+                {% include 'app_mock/card.html' %}
+            </div>
+    
+            <div class="column is-4">
+                {% include 'app_mock/card.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="title">
+            Tecnologías <span class="subtitle"> que uso hasta el momento.</span>
+        </div>
+
+        <div class="container is-flex is-flex-wrap-wrap">
+            {% for tech in technologies %}
+            <div class="block mx-4 is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+                <figure class="image is-64x64">
+                    <!-- Para mostrar la imagen, utilizas 'tech.logo.url' -->
+                    <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
+                </figure>
+                <p class="subtitle mt-2">{{ tech.name|capfirst }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
