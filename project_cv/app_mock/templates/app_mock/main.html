@@ -1,6 +1,6 @@
 <!-- app_mock/main.html -->
-
 {% extends 'app_mock/base.html' %}
+
 {% load static %}
 
 {% block content %}
@@ -34,5 +34,10 @@
         {% include 'app_mock/contacto.html' %}
     </div>
 </section>
+
+{% block extra_js %}
+    {{ block.super }}  <!-- Esto asegura que no se sobrescriban otros scripts -->
+    <script src="{% static 'app_mock/js/copyEmail.js' %}"></script>
+{% endblock %}
 
 {% endblock %}

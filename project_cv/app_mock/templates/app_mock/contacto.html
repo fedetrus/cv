@@ -1,9 +1,22 @@
+<!-- app_mock/contacto.html -->
+ 
 <div class="is-flex is-align-items-center">
     <p class="title">
         Contacto:
     </p>
 </div>
-<p class="subtitle mt-2 is-flex is-align-items-center">
-    Fedetrus@gmail.com <span class="button ml-3 is-success">Copy</span>
-</p>
 
+<div class="is-flex is-align-items-baseline" style="gap: 1rem;">
+    <p class="subtitle mt-2">
+        <a id="email-link" href="mailto:&#102;&#101;&#100;&#101;&#116;&#114;&#117;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">
+            &#102;&#101;&#100;&#101;&#116;&#114;&#117;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;
+        </a>
+    </p>
+    <strong>or</strong>
+    <div class="button is-success" onclick="copyEmail()">Copy email</div>
+</div>
+<div id="copy-message" class="is-hidden subtitle has-text-success has-text-weight-bold">
+    ¡Correo copiado!
+</div>
+
+    
