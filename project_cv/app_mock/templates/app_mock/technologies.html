@@ -5,7 +5,7 @@
     {% for tech in technologies %}
     <div class="mx-2 is-flex is-flex-direction-column is-align-items-center">
         <!-- Imagen: cambia de 32x32 en desktop a 16x16 en mobile -->
-        <figure class="image is-32x32 {% if tech.name == 'djangoRest' %}has-background-grey-lighter{% endif %}">
+        <figure class="image is-32x32 {% if tech.name == 'djangoREST' %}has-background-grey-lighter{% endif %}">
             <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
         </figure>
         <!-- Texto: subtitle en desktop, normal en mobile -->
