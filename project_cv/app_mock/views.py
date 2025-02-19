@@ -10,3 +10,7 @@ class TechnologyListView(ListView):
     def get_queryset(self):
         return Technology.objects.filter(status=True).order_by('nro_orden')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['intro_logo'] = Technology.objects.filter(name="django").first()  # Obtiene solo Django
+        return context

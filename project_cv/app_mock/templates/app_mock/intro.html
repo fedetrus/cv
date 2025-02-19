@@ -1,8 +1,7 @@
-{% load static %}
 
 <div class="is-flex is-align-items-center">
     <figure class="image is-64x64">
-        <img src="{{ tech }}" alt="Django">
+        <img src="{{ intro_logo.logo.url }}" alt="Django">
     </figure>
     <p class="title ml-3">
         Developer
@@ -13,7 +12,3 @@
     <strong>simples</strong>, <strong>limpias</strong> e
     <strong>intuitivas</strong>.
 </p>
-
-<figure class="image is-32x32 {% if tech.name == 'djangoREST' %}has-background-grey-lighter{% endif %}">
-    <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
-</figure>
