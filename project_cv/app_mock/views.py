@@ -12,6 +12,6 @@ class TechnologyListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['intro_logo'] = Technology.objects.filter(name="Django").first()  # Obtiene solo Django
-        context['projects'] = Project.objects.filter(status=True).order_by('nro_orden')  # Obtiene los proyectos activos y ordenados
+        context['intro_logo'] = Technology.objects.filter(name="django").first()
+        context['projects'] = Project.objects.filter(status=True).prefetch_related('technologies', 'images').order_by('nro_orden')
         return context

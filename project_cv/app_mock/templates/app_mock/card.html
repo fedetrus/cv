@@ -2,10 +2,19 @@
 <div class="card has-background-black-ter is-shadowless">
     <div class="card-image">
         <figure class="image is-16by9">
-            <img src="{{ project.imagen.url }}" alt="{{ project.title }}" style="width: 100%; height: 100%; object-fit: contain;">
+            <!-- Al hacer clic, se abre el modal -->
+            {% with project.images.all|first as first_image %}
+                {% if first_image %}
+                    <img src="{{ first_image.image.url }}" 
+                         alt="{{ project.title }}" 
+                         style="width: 100%; height: 100%; object-fit: contain; cursor: pointer;"
+                         onclick="openModal('{{ project.id }}')">
+                {% endif %}
+            {% endwith %}
         </figure>
         <p class="title is-5 ml-2 mt-2 mr-2">{{ project.title }}</p>
     </div>
+
     <div class="card-content p-2">
         <div class="content">
             {{ project.description }}
@@ -18,7 +27,6 @@
                     <figure class="image is-32x32 {% if tech.name == 'djangoREST' %}has-background-grey-lighter{% endif %}">
                         <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
                     </figure>
-                    <!-- Texto: subtitle en desktop, normal en mobile -->
                     <h7 class="mt-1 is-hidden-mobile">{{ tech.name|capfirst }}</h7>
                     <p class="my-1 is-hidden-tablet">{{ tech.name|capfirst }}</p>
                 </div>
@@ -27,5 +35,39 @@
         </div>
     </div>
 </div>
-{% endfor %}
 
+<p>Total imágenes: {{ project.images.all|length }}</p>
+
+<!-- Modal de Bulma con Slider -->
+<div id="modal-{{ project.id }}" class="modal">
+    <div class="modal-background" onclick="closeModal('{{ project.id }}')"></div>
+    <div class="modal-content">
+        <div class="box">
+            <button class="button is-large is-dark"
+                    style="position: absolute; top: 50%; left: -40px; transform: translateY(-50%); z-index: 10;"
+                    onclick="prevImage('{{ project.id }}')">
+                &#10094; </button>
+
+            <figure class="image is-4by3">
+                {% with project.images.all|first as first_image %}
+                    {% if first_image %}
+                        <img id="modal-image-{{ project.id }}"
+                            src="{{ first_image.image.url }}"
+                            alt="Imagen de {{ project.title }}"
+                            style="width: 100%; height: auto; object-fit: contain;">
+                    {% else %}
+                        <p>No hay imágenes para este proyecto</p>
+                    {% endif %}
+                {% endwith %}
+            </figure>
+
+            <button class="button is-large is-dark"
+                    style="position: absolute; top: 50%; right: -40px; transform: translateY(-50%); z-index: 10;"
+                    onclick="nextImage('{{ project.id }}')">
+                &#10095; </button>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" onclick="closeModal('{{ project.id }}')"></button>
+</div>
+
+{% endfor %}

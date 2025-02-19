@@ -37,7 +37,6 @@ def reorder_nro_orden(sender, instance, **kwargs):
 class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    imagen = models.ImageField(upload_to='projects/')
     nro_orden = models.PositiveSmallIntegerField(editable=True)  # Editable y no único
     status = models.BooleanField(default=True)
     inicio = models.DateField()
@@ -51,6 +50,13 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+    
+class ProjectImage(models.Model):
+    project = models.ForeignKey(Project, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='projects/')
+
+    def __str__(self):
+        return f"Imagen de {self.project.title}"
     
 @receiver(post_delete, sender=Project)
 def delete_technology_logo(sender, instance, **kwargs):
