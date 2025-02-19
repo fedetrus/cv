@@ -1,16 +1,31 @@
+{% for project in projects %}
 <div class="card has-background-black-ter is-shadowless">
     <div class="card-image">
-        <figure class="image is-4by3">
-            <img src="https://bulma.io/assets/images/placeholders/800x480.png" alt="Placeholder image" />
+        <figure class="image is-16by9">
+            <img src="{{ project.imagen.url }}" alt="{{ project.title }}" style="width: 100%; height: 100%; object-fit: contain;">
         </figure>
+        <p class="title is-5 ml-2 mt-2 mr-2">{{ project.title }}</p>
     </div>
-    <div class="card-content">
+    <div class="card-content p-2">
         <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-            iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-            <a href="#">#responsive</a>
+            {{ project.description }}
             <br />
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            <time>{{ project.inicio|date:"d-m-Y" }}</time>
+            <br />
+            <div class="container is-flex is-flex-wrap-wrap is-justify-content-center">
+                {% for tech in project.technologies.all %}
+                <div class="mx-2 is-flex is-flex-direction-column is-align-items-center">
+                    <figure class="image is-32x32 {% if tech.name == 'djangoREST' %}has-background-grey-lighter{% endif %}">
+                        <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
+                    </figure>
+                    <!-- Texto: subtitle en desktop, normal en mobile -->
+                    <h7 class="mt-1 is-hidden-mobile">{{ tech.name|capfirst }}</h7>
+                    <p class="my-1 is-hidden-tablet">{{ tech.name|capfirst }}</p>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
+{% endfor %}
+
