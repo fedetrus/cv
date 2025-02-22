@@ -3,6 +3,7 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 import os
 
+# TECNOLOGIAS #####################################
 class Technology(models.Model):
     name = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='logos/')
@@ -33,7 +34,9 @@ def reorder_nro_orden(sender, instance, **kwargs):
         if tech.nro_orden != index:
             tech.nro_orden = index
             tech.save()
+##############################################################
 
+# PROYECTOS #####################################
 class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
@@ -73,3 +76,40 @@ def reorder_nro_orden(sender, instance, **kwargs):
         if tech.nro_orden != index:
             tech.nro_orden = index
             tech.save()
+##############################################################
+
+# EXPERIENCIA LABORAL #####################################
+class Trabajo(models.Model):
+    empresa = models.CharField(max_length=255)
+    ubicacion = models.CharField(max_length=255)
+    inicio = models.DateField()
+    fin = models.DateField(null=True, blank=True)
+
+    def anio_inicio(self):
+        return self.inicio.year
+
+    def anio_fin(self):
+        return self.fin.year if self.fin else "Actualidad"
+
+    def __str__(self):
+        return f"{self.empresa} ({self.ubicacion})"
+
+class Puesto(models.Model):
+    trabajo = models.ForeignKey(Trabajo, on_delete=models.CASCADE, related_name='puestos')
+    nombre = models.CharField(max_length=255)
+    inicio = models.DateField()
+    fin = models.DateField(null=True, blank=True)
+    descripcion = models.CharField(max_length=300, blank=True)
+
+    class Meta:
+        ordering = ['-inicio']
+
+    def anio_inicio(self):
+        return self.inicio.year
+
+    def anio_fin(self):
+        return self.fin.year if self.fin else "Actualidad"
+
+    def __str__(self):
+        return f"{self.nombre} en {self.trabajo.empresa}"
+##############################################################

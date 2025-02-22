@@ -1,6 +1,6 @@
 # app_mock/views.py
 from django.views.generic import ListView
-from .models import Technology, Project
+from .models import Technology, Project, Trabajo
 
 class TechnologyListView(ListView):
     model = Technology
@@ -14,4 +14,5 @@ class TechnologyListView(ListView):
         context = super().get_context_data(**kwargs)
         context['intro_logo'] = Technology.objects.filter(name="django").first()
         context['projects'] = Project.objects.filter(status=True).prefetch_related('technologies', 'images').order_by('nro_orden')
+        context['trabajos'] = Trabajo.objects.all().prefetch_related('puestos')
         return context

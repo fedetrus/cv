@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Technology, Project, ProjectImage
+from .models import Technology, Project, ProjectImage, Trabajo, Puesto
 
 @admin.register(Technology)
 class TechnologyAdmin(admin.ModelAdmin):
@@ -28,3 +28,11 @@ class ProjectAdmin(admin.ModelAdmin):
         last_order = Project.objects.order_by('-nro_orden').first()
         next_order = (last_order.nro_orden + 1) if last_order else 1
         return {'nro_orden': next_order}
+    
+@admin.register(Trabajo)
+class TrabajoAdmin(admin.ModelAdmin):
+    list_display = ('empresa', 'ubicacion', 'inicio', 'fin')
+
+@admin.register(Puesto)
+class PuestoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'descripcion', 'inicio', 'fin')
