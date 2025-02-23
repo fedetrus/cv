@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Technology, Project, ProjectImage, Trabajo, Puesto
+from .models import Technology, Project, ProjectImage, Trabajo, Puesto, Academia, Carrera
 
 @admin.register(Technology)
 class TechnologyAdmin(admin.ModelAdmin):
@@ -17,7 +17,6 @@ class ProjectImageInline(admin.TabularInline):  # O usa StackedInline si prefier
     extra = 1  # Muestra un campo extra vacío para agregar más imágenes
     fields = ['image']  # Solo muestra el campo de la imagen en el inline
 
-################################################################################
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -31,6 +30,8 @@ class ProjectAdmin(admin.ModelAdmin):
         next_order = (last_order.nro_orden + 1) if last_order else 1
         return {'nro_orden': next_order}
     
+################################################################################
+
 @admin.register(Trabajo)
 class TrabajoAdmin(admin.ModelAdmin):
     list_display = ('empresa', 'ubicacion', 'inicio', 'fin')
@@ -40,3 +41,11 @@ class PuestoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'descripcion', 'inicio', 'fin')
 
 ################################################################################
+
+@admin.register(Academia)
+class AcademiaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'ubicacion')
+
+@admin.register(Carrera)
+class CarreraAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'inicio', 'fin', 'descripcion')

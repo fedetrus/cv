@@ -1,9 +1,29 @@
+<h1 class="title">
+    Formación:
+</h1>
 
-    <h1 class="title">
-        Estudios Académicos:
-    </h1>
+{% for academia in academias %}
+    <div class="subtitle is-4 has-text-info mt-1 mb-0">{{ academia.nombre }}</div>
+    <div class="subtitle is-6 m-0">{{ academia.ubicacion }}</div>
+    {% if academia.carreras.all %}
+        {% for carrera in academia.carreras.all %}
+        <div class="m-2">
+            <div class="subtitle is-4 has-text-primary mb-0">
+                {{ carrera.nombre }} 
+                <span class="subtitle is-6 has-text-primary">
+                    | {{ carrera.anio_inicio }}{% if carrera.anio_inicio != carrera.anio_fin %} - {{ carrera.anio_fin }}{% endif %}
+                </span>
+            </div>            
+            {% if carrera.descripcion %}
+                <div class="m-0"> {{ carrera.descripcion }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Sin Carreras</p>
+    {% endif %}
+{% empty %}
+    <p>Sin Academias</p>
+{% endfor %}
 
-<p class="subtitle mt-4">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae voluptatem saepe corporis quae culpa sunt, iste minima omnis eveniet aut? Asperiores dicta sint nihil omnis unde maiores blanditiis consequuntur repellendus.
-</p>
 

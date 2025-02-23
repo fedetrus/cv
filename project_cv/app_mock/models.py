@@ -118,14 +118,6 @@ class Puesto(models.Model):
 class Academia(models.Model):
     nombre = models.CharField(max_length=255)
     ubicacion = models.CharField(max_length=255)
-    inicio = models.DateField()
-    fin = models.DateField(null=True, blank=True)
-
-    def anio_inicio(self):
-        return self.inicio.year
-
-    def anio_fin(self):
-        return self.fin.year if self.fin else "Actualidad"
 
     def __str__(self):
         return f"{self.nombre} ({self.ubicacion})"
@@ -144,8 +136,9 @@ class Carrera(models.Model):
         return self.inicio.year
 
     def anio_fin(self):
-        return self.fin.year if self.fin else "Actualidad"
+        return self.fin.year if self.fin else "Inconcluso"
 
     def __str__(self):
         return f"{self.nombre} en {self.academia.nombre}"
+    
 ##############################################################
