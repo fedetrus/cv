@@ -17,6 +17,8 @@ class ProjectImageInline(admin.TabularInline):  # O usa StackedInline si prefier
     extra = 1  # Muestra un campo extra vacío para agregar más imágenes
     fields = ['image']  # Solo muestra el campo de la imagen en el inline
 
+################################################################################
+
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'nro_orden', 'description', 'status', 'inicio')
@@ -36,3 +38,5 @@ class TrabajoAdmin(admin.ModelAdmin):
 @admin.register(Puesto)
 class PuestoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'descripcion', 'inicio', 'fin')
+
+################################################################################

@@ -113,3 +113,39 @@ class Puesto(models.Model):
     def __str__(self):
         return f"{self.nombre} en {self.trabajo.empresa}"
 ##############################################################
+
+# Académico #####################################
+class Academia(models.Model):
+    nombre = models.CharField(max_length=255)
+    ubicacion = models.CharField(max_length=255)
+    inicio = models.DateField()
+    fin = models.DateField(null=True, blank=True)
+
+    def anio_inicio(self):
+        return self.inicio.year
+
+    def anio_fin(self):
+        return self.fin.year if self.fin else "Actualidad"
+
+    def __str__(self):
+        return f"{self.nombre} ({self.ubicacion})"
+
+class Carrera(models.Model):
+    academia = models.ForeignKey(Academia, on_delete=models.CASCADE, related_name='carreras')
+    nombre = models.CharField(max_length=255)
+    inicio = models.DateField()
+    fin = models.DateField(null=True, blank=True)
+    descripcion = models.CharField(max_length=300, blank=True)
+
+    class Meta:
+        ordering = ['-inicio']
+
+    def anio_inicio(self):
+        return self.inicio.year
+
+    def anio_fin(self):
+        return self.fin.year if self.fin else "Actualidad"
+
+    def __str__(self):
+        return f"{self.nombre} en {self.academia.nombre}"
+##############################################################
