@@ -18,8 +18,4 @@ function copyEmail() {
     let msg = document.getElementById("copy-message");
     msg.classList.remove("is-hidden");
     setTimeout(() => msg.classList.add("is-hidden"), 1500);
-
-
-
-
 }
