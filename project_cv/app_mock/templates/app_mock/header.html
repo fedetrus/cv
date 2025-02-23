@@ -1,10 +1,14 @@
 <!-- app_core/header.html -->
  {% load static %}
-<nav class="navbar is-fixed-top"  role="navigation" aria-label="main navigation">
+<nav class="navbar is-fixed-bottom has-background-black-bis"  role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="#">
+        <div class="navbar-item" href="#">
             <img src="{% static 'app_mock/images/favicon.svg' %}" alt="Logo">
-        </a>
+        </div>
+        <div class="navbar-item is-hidden-desktop">
+            Federico Suárez
+        </div>
+ 
         <a role="button" class="navbar-burger" data-target="navbar-menu" aria-label="menu" aria-expanded="false">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -38,9 +42,9 @@
             </a>
         </div>
         <div class="navbar-end">
-            <a class="navbar-item">
+            <div class="navbar-item is-hidden-mobile">
                 Federico Suárez
-            </a>
+            </div>
         </div>
     </div>
 </nav>

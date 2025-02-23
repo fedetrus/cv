@@ -11,13 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                const offsetPosition = elementPosition - navbarHeight - 10; // Ajusta el valor extra según necesites
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
+                targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
             }
 
             // Cierra el menú en móviles si está abierto
