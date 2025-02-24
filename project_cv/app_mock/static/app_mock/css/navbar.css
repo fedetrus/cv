@@ -1,24 +1,32 @@
+/* Estilos generales (afectan desktop) */
 .navbar-menu {
-  display: block !important; /* Fuerza mostrar (Bulma lo oculta en mobile) */
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 3.25rem; /* Ajusta según la altura real de tu navbar fijo */
-  
-  /* Para el efecto “sube y se desvanece” */
-  transform: translateY(100px); /* o 100% si prefieres que salga más lejos */
-  opacity: 0;
-  pointer-events: none; /* No clickeable mientras está cerrado */
-  
-  /* Transiciones suaves al agregar o quitar .is-active */
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* 3) Cuando está activo (Bulma añade .is-active), subimos y volvemos opaco */
-.navbar-menu.is-active {
-  transform: translateY(0);
+  display: flex; /* En desktop, mantén el diseño horizontal */
   opacity: 1;
-  pointer-events: auto; /* Ahora sí interactuable */
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
+/* Solo en mobile: animación de deslizamiento */
+@media screen and (max-width: 1023px) {  
+  .navbar-menu {
+    display: block !important; /* Sobreescribir lo que Bulma oculta en mobile */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 3.25rem; /* Ajusta a la altura real del navbar */
 
+    /* Oculto por defecto */
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Animación de apertura en mobile */
+  .navbar-menu.is-active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
