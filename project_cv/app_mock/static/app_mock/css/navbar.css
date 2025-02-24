@@ -1,0 +1,24 @@
+.navbar-menu {
+  display: block !important; /* Fuerza mostrar (Bulma lo oculta en mobile) */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 3.25rem; /* Ajusta según la altura real de tu navbar fijo */
+  
+  /* Para el efecto “sube y se desvanece” */
+  transform: translateY(100px); /* o 100% si prefieres que salga más lejos */
+  opacity: 0;
+  pointer-events: none; /* No clickeable mientras está cerrado */
+  
+  /* Transiciones suaves al agregar o quitar .is-active */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* 3) Cuando está activo (Bulma añade .is-active), subimos y volvemos opaco */
+.navbar-menu.is-active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto; /* Ahora sí interactuable */
+}
+
+
