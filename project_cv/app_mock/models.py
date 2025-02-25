@@ -136,7 +136,7 @@ class Carrera(models.Model):
         return self.inicio.year
 
     def anio_fin(self):
-        return self.fin.year if self.fin else "Inconcluso"
+        return self.fin.year if self.fin else "Inconpleto"
 
     def __str__(self):
         return f"{self.nombre} en {self.academia.nombre}"
