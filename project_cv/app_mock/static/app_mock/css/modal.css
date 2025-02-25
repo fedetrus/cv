@@ -1,0 +1,52 @@
+.image-slider {
+  position: relative;
+  text-align: center;
+}
+
+/* Ajuste de las imágenes dentro del slider */
+.slider-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+/* Contenedor de las flechas: fija su posición */
+.slider-buttons {
+  position: absolute;
+  top: 50%; /* Centra las flechas verticalmente */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between; /* Ubica una a la izquierda y otra a la derecha */
+  transform: translateY(-50%); /* Ajuste fino para centrarlas bien */
+  pointer-events: none; /* Permite hacer clic a través del div */
+}
+
+/* Flechas: ahora están flotando fijas */
+.slider-prev, .slider-next {
+  background: none;
+  color: white;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  pointer-events: auto; /* Permite clics sobre los botones */
+  position: absolute;
+  text-shadow: 2px 2px 4px black;
+}
+
+/* Flecha izquierda (pegada al lado izquierdo del slider) */
+.slider-prev {
+  left: 10px;
+}
+
+/* Flecha derecha (pegada al lado derecho del slider) */
+.slider-next {
+  right: 10px;
+}
+
+/* Efecto hover */
+.slider-prev:hover, .slider-next:hover {
+  color: hsl(141, 71%, 48%);
+}

@@ -13,7 +13,6 @@ class TechnologyListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['intro_logo'] = Technology.objects.filter(name="django").first()
-        context['intro_logo_python'] = Technology.objects.filter(name="python").first()
         context['projects'] = Project.objects.filter(status=True).prefetch_related('technologies', 'images').order_by('nro_orden')
         context['trabajos'] = Trabajo.objects.all().prefetch_related('puestos')
         context['academias'] = Academia.objects.all().prefetch_related('carreras')
