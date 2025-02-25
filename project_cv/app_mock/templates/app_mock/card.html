@@ -18,13 +18,16 @@
                         {% endif %}
                         {% endwith %}
                     </figure>
-                    <p class="title is-5 ml-2 mt-2 mr-2">{{ project.title }}</p>
+                    <p class="title is-size-3-tablet is-size-4-mobile ml-2 mt-2 mr-2">{{ project.title }}</p>
                 </div>
 
                 <div class="card-content p-2">
                     <div class="container">
                         <div class="subtitle is-5">
                             {{ project.description }}
+                        </div>
+                        <div class="title is-size-4-tablet is-size-4-mobile my-4">
+                            Tecnologías implementadas
                         </div>
                         <div class="container mt-1 is-flex is-flex-wrap-wrap is-justify-content-center">
                             {% for tech in project.technologies.all %}
@@ -33,7 +36,7 @@
                                     class="image is-32x32 {% if tech.name == 'djangoREST' %}has-background-grey-lighter{% endif %}">
                                     <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
                                 </figure>
-                                <div class="subtitle is-7 is-hidden-mobile">{{ tech.name|capfirst }}</div>
+                                <div class="subtitle is-size-5-tablet is-hidden-mobile">{{ tech.name|capfirst }}</div>
                                 <p class="is-hidden-tablet">{{ tech.name|capfirst }}</p>
                             </div>
                             {% endfor %}

@@ -1,16 +1,16 @@
-<h1 class="title">
+<h1 class="title is-size-2-tablet">
     Trayectoria Laboral:
 </h1>
 
 <p class="subtitle">
     {% for trabajo in trabajos %}
-        <div><span class="subtitle is-4 has-text-info">{{ trabajo.empresa }}</span><span class="subtitle is-6 has-text-info"> | {{ trabajo.anio_inicio }} - {{ trabajo.anio_fin}}</span></div>
-        <div><span class="subtitle is-6">{{ trabajo.ubicacion }}</span></div>
+        <div><span class="subtitle is-size-2-tablet has-text-info">{{ trabajo.empresa }}</span><span class="subtitle is-size-3-tablet has-text-info"> | {{ trabajo.anio_inicio }} - {{ trabajo.anio_fin}}</span></div>
+        <div><span class="subtitle is-size-4-tablet">{{ trabajo.ubicacion }}</span></div>
         {% if trabajo.puestos.all %}
                 {% for puesto in trabajo.puestos.all %}
                 <div class="m-2">
-                    <div><span class="subtitle is-4 has-text-primary">{{ puesto.nombre }}</span> <span class="subtitle is-6 has-text-primary">| {{ puesto.anio_inicio }} - {{ puesto.anio_fin}}</span></div>
-                    <div> {{ puesto.descripcion }} </div>
+                    <div><span class="subtitle is-size-2-tablet has-text-primary">{{ puesto.nombre }}</span> <span class="subtitle is-size-3-tablet has-text-primary">| {{ puesto.anio_inicio }} - {{ puesto.anio_fin}}</span></div>
+                    <div class="subtitle is-size-3-tablet"> {{ puesto.descripcion }} </div>
                 </div>
                 {% endfor %}
         {% else %}

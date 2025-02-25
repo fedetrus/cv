@@ -1,16 +1,20 @@
-<div class="title">
-    Tecnologías<span class="subtitle"> que implemento hasta el momento:</span>
+<div class="title is-size-2-tablet">
+    Tecnologías<span class="subtitle is-size-3-tablet"> que implemento hasta el momento:</span>
 </div>
 <div class="container is-flex is-flex-wrap-wrap is-justify-content-center">
     {% for tech in technologies %}
     <div class="mx-2 is-flex is-flex-direction-column is-align-items-center">
+
         <!-- Imagen: cambia de 32x32 en desktop a 16x16 en mobile -->
-        <figure class="image is-32x32 {% if tech.name == 'djangoREST' %}has-background-grey-lighter{% endif %}">
-            <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
+        <figure class="image responsive-image 
+        {% if tech.name == 'djangoREST' or tech.name == 'pythonanywhere' %}has-background-grey-lighter{% endif %}">
+        <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
         </figure>
+    
+
         <!-- Texto: subtitle en desktop, normal en mobile -->
-        <p class="mt-2 subtitle is-hidden-mobile">{{ tech.name|capfirst }}</p>
-        <p class="my-1 is-hidden-tablet">{{ tech.name|capfirst }}</p>
+        <p class="mt-2 subtitle is-size-4-tablet is-hidden-mobile">{{ tech.name|capfirst }}</p>
+        <p class="my-1 subtitle is-size-3-tablet is-hidden-tablet">{{ tech.name|capfirst }}</p>
     </div>
     {% endfor %}
 </div>
