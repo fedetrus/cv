@@ -6,6 +6,11 @@
   pointer-events: auto;
 }
 
+.navbar-start {
+  flex-grow: 1; /* Permite que los items usen el espacio */
+  justify-content: space-evenly; /* Distribuye uniformemente */
+}
+
 /* Solo en mobile: animación de deslizamiento */
 @media screen and (max-width: 1023px) {  
   .navbar-menu {
