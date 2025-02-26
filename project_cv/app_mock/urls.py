@@ -1,7 +1,7 @@
 # app_mock/urls.py
 from django.urls import path
-from django.views.generic import TemplateView
-from .views import TechnologyListView, generate_pdf
+from .views import TechnologyListView
+from .utils import generate_pdf
 
 urlpatterns = [
     path('', TechnologyListView.as_view(), name='main'),
