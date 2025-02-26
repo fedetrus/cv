@@ -38,28 +38,27 @@ def generate_pdf(request):
 
     # Construir el script de Pyppeteer dinámicamente
     script = f"""
-import asyncio
-from pyppeteer import launch
+        import asyncio
+        from pyppeteer import launch
 
-async def main():
-    browser = await launch(headless=True, args=['--no-sandbox', '--disable-gpu'])
-    page = await browser.newPage()
-    await page.goto('{url}', {{'waitUntil': 'networkidle2'}})  # Espera que cargue todo
+        async def main():
+            browser = await launch(headless=True, args=['--no-sandbox', '--disable-gpu'])
+            page = await browser.newPage()
+            await page.goto('{url}', {{'waitUntil': 'networkidle2'}})  # Espera que cargue todo
 
-    # Si el usuario eligió la versión Light, cambiar el tema a Light
-    { "await page.evaluate('document.documentElement.setAttribute(\"data-theme\", \"light\")')" if is_light else "" }
+            # Si el usuario eligió la versión Light, cambiar el tema a Light
+            { "await page.evaluate('document.documentElement.setAttribute(\"data-theme\", \"light\")')" if is_light else "" }
 
-    # Obtener la altura exacta del contenido sin generar espacio extra
-    body_height = await page.evaluate('Math.min(document.body.scrollHeight, 4500)')
+            # Obtener la altura exacta del contenido sin generar espacio extra
+            body_height = await page.evaluate('Math.min(document.body.scrollHeight, 4500)')
 
-    # Generar el PDF con altura dinámica ajustada
-    await page.pdf(path="{pdf_path}", width="1920px", height=f"{{body_height}}px", printBackground=True)
-    
-    await browser.close()
+            # Generar el PDF con altura dinámica ajustada
+            await page.pdf(path="{pdf_path}", width="1920px", height=f"{{body_height}}px", printBackground=True)
+            
+            await browser.close()
 
-asyncio.run(main())
-"""
-
+        asyncio.run(main())
+        """
     # Ejecutar Pyppeteer en un subproceso separado
     subprocess.run(["python3", "-c", script], check=True)
 
