@@ -35,3 +35,9 @@
     pointer-events: auto;
   }
 }
+
+@media print {
+  .no-print {
+      display: none !important;
+  }
+}

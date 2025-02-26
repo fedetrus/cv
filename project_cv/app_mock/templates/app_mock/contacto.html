@@ -13,8 +13,23 @@
     <strong>|</strong>
     <div class="button is-success" onclick="copyEmail()">Copy email</div>
 </div>
+
 <div id="copy-message" class="is-hidden subtitle has-text-success has-text-weight-bold">
     ¡Correo copiado!
 </div>
+
+<div class="container">
+    <!-- Botón para descargar la versión original (Dark) -->
+    <a href="{% url 'descargar_pdf' %}" class="button is-success mb-2">
+        <strong>CV VERSION PDF (MODO ORIGINAL)</strong>
+    </a>
+    <!-- Botón para descargar la versión Light -->
+    <a href="{% url 'descargar_pdf' %}?light=true" class="button is-warning">
+       <strong>CV VERSION PDF IMPRESIÓN (MODO CLARO)</strong>
+    </a>
+</div>
+
+
+
 
     

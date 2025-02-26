@@ -6,11 +6,20 @@
     }
   }
   
-  /* Tamaño en desktop (desde 1024px en adelante) */
+/* Tamaño en desktop (desde 1024px en adelante) */
   @media screen and (min-width: 1024px) {
     .responsive-image {
       width: 64px;
       height: 64px;
     }
   }
+
+/* Ajustar tamaño de imágenes en el PDF generado por Pyppeteer */
+@media print {
+  .responsive-image img {
+      width: 64px !important;  /* O el tamaño que necesites */
+      height: 64px !important;
+  }
+}
+
   

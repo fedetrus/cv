@@ -21,17 +21,17 @@
 </head>
 
 <body>
-    <header>
+    <header class="no-print">
         {% include 'app_mock/header.html' %}
     </header>
 
-    <div class="columns is-centered">
+    <main class="columns is-centered">
         <div class="column is-10">
             {% block content %}
                 
             {% endblock content %}
         </div>
-    </div>
+    </main>
 
     <script src="{% static 'app_mock/js/copyEmail.js' %}"></script>
     <script src="{% static 'app_mock/js/modal.js' %}"></script>
