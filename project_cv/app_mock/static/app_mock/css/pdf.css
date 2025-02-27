@@ -1,0 +1,9 @@
+@media print {
+    .navbar, .footer, .no-print { 
+        display: none !important;  /* Oculta elementos que no quieres en el PDF */
+    }
+
+    body {
+        width: 1920px; /* Asegura que el ancho sea FullHD */
+    }
+}

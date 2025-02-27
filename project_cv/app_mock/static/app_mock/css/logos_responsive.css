@@ -14,12 +14,5 @@
     }
   }
 
-/* Ajustar tamaño de imágenes en el PDF generado por Pyppeteer */
-@media print {
-  .responsive-image img {
-      width: 64px !important;  /* O el tamaño que necesites */
-      height: 64px !important;
-  }
-}
 
   
