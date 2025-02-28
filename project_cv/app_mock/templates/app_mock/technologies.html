@@ -8,7 +8,7 @@
         <!-- Imagen: cambia de 32x32 en desktop a 16x16 en mobile -->
         <figure class="image responsive-image 
         {% if tech.name == 'djangoREST' or tech.name == 'pythonanywhere' %}has-background-grey-lighter{% endif %}">
-        <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
+        <img src="{{ tech.absolute_logo_url }}" alt="{{ tech.name }}" style="width: 64px; height: 64px;">
         </figure>
     
 

@@ -8,7 +8,7 @@
 
 <div class="is-flex is-align-items-baseline" style="gap: 1rem;">
     <p class="subtitle mt-2">
-        <a id="email-link" href="mailto:federico.suarez.dev@protonmail.com" class="subtitle subtitle is-size-2-tablet has-text-success">federico.suarez.dev@protonmail.com</a>
+        <a id="email-link" href="mailto:federico.suarez.dev@protonmail.com" class="subtitle subtitle is-size-2-tablet has-text-link">federico.suarez.dev@protonmail.com</a>
     </p>
     <strong>|</strong>
     <div class="button is-success" onclick="copyEmail()">Copy email</div>
@@ -18,7 +18,14 @@
     ¡Correo copiado!
 </div>
 
-<div class="container">
+<div style="gap: 1rem;">
+    <p class="title is-size-2-tablet">
+        Web CV: 
+    </p>
+    <a href="https://djangofedetrus.pythonanywhere.com/" class=" subtitle is-size-2-tablet has-text-link"> djangofedetrus.pythonanywhere.com</a>
+</div>
+
+<div class="mt-5">
     <!-- Botón para descargar la versión original (Dark) -->
     <a href="{% url 'descargar_pdf' %}" class="button is-success mb-2">
         <strong>CV VERSION PDF (MODO ORIGINAL)</strong>
@@ -28,6 +35,7 @@
        <strong>CV VERSION PDF IMPRESIÓN (MODO CLARO)</strong>
     </a>
 </div>
+
 
 
 

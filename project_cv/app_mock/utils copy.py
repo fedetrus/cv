@@ -1,54 +1,43 @@
 import subprocess
 from django.http import HttpResponse
-import os
 import tempfile
 from datetime import datetime
 
 def generate_pdf(request):
-    """Genera un PDF capturando la página en modo oscuro o claro según la versión elegida."""
+    """Genera un PDF desde HTML con WKHTMLTOPDF"""
 
-    url = request.build_absolute_uri('/')  # URL actual
-    is_light = request.GET.get("light", "false").lower() == "true"  # Detectar si es versión light
-    pdf_path = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf").name  # Archivo temporal
+    # Obtener la URL de la página actual
+    url = request.build_absolute_uri('/')
 
-    # Obtener la fecha actual en formato dd-mm-yyyy
+    # Detectar si el usuario quiere la versión Light
+    is_light = request.GET.get("light", "false").lower() == "true"
+
+    # Agregar parámetro en la URL para activar el modo claro
+    if is_light:
+        url += "?theme=light"
+
+    # Nombre del archivo PDF con fecha
     fecha_actual = datetime.now().strftime("%d-%m-%Y")
     version = "Light" if is_light else "Dark"
     pdf_filename = f"CV_Federico-Suarez_{version}_{fecha_actual}.pdf"
 
-    # Construir el script de Pyppeteer dinámicamente
-    script = f"""
-import asyncio
-from pyppeteer import launch
+    # Crear un archivo temporal para el PDF
+    pdf_path = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf").name
 
-async def main():
-    browser = await launch(headless=True, args=['--no-sandbox', '--disable-gpu'])
-    page = await browser.newPage()
-    await page.goto('{url}', {{'waitUntil': 'networkidle2'}})  # Espera que cargue todo
+    # Ejecutar wkhtmltopdf
+    result = subprocess.run(
+        ["wkhtmltopdf", "--page-width", "1920px", "--page-height", "99999px", url, pdf_path],
+        capture_output=True, text=True
+    )
 
-    # Si el usuario eligió la versión Light, cambiar el tema a Light
-    { "await page.evaluate('document.documentElement.setAttribute(\"data-theme\", \"light\")')" if is_light else "" }
+    if result.returncode != 0:
+        return HttpResponse(f"Error al generar PDF: {result.stderr}", status=500)
 
-    # Obtener la altura exacta del contenido sin generar espacio extra
-    body_height = await page.evaluate('Math.min(document.body.scrollHeight, 4500)')
-
-    # Generar el PDF con altura dinámica ajustada
-    await page.pdf(path="{pdf_path}", width="1920px", height=f"{{body_height}}px", printBackground=True)
-    
-    await browser.close()
-
-asyncio.run(main())
-"""
-
-    # Ejecutar Pyppeteer en un subproceso separado
-    subprocess.run(["python3", "-c", script], check=True)
-
-    # Leer el archivo PDF generado y devolverlo como respuesta
+    # Leer el PDF generado
     with open(pdf_path, "rb") as pdf_file:
-        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="{pdf_filename}"'
+        pdf_content = pdf_file.read()
 
-    # Eliminar el archivo temporal
-    os.remove(pdf_path)
+    response = HttpResponse(pdf_content, content_type="application/pdf")
+    response["Content-Disposition"] = f'attachment; filename="{pdf_filename}"'
 
     return response
