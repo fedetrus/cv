@@ -30,8 +30,8 @@ def generate_pdf(request):
     # Ejecutar wkhtmltopdf con JS para forzar el tema Light si corresponde
     command = [
         "wkhtmltopdf",
-        "--page-width", "1920px",
-        "--page-height", "4400px",
+        "--page-width", "1800px",
+        "--page-height", "3500px",
         "--enable-javascript",
         "--javascript-delay", "1500",  # Tiempo de espera para que Bulma aplique los estilos
         "--run-script", js_script,

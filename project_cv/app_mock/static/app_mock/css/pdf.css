@@ -10,6 +10,11 @@
         print-color-adjust: exact !important;
     }
 
+    .hero {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
     /* Mantener los colores originales de Bulma en textos y botones */
     * {
         background: transparent !important;
