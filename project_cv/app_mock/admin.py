@@ -48,4 +48,4 @@ class AcademiaAdmin(admin.ModelAdmin):
 
 @admin.register(Carrera)
 class CarreraAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'inicio', 'fin', 'descripcion')
+    list_display = ('nombre', 'inicio', 'fin', 'descripcion', 'status')

@@ -1,6 +1,8 @@
 # app_mock/views.py
 from django.views.generic import ListView
-from .models import Technology, Project, Trabajo, Academia
+from .models import Technology, Project, Trabajo, Academia, Carrera
+from django.db.models import Prefetch
+
 
 class TechnologyListView(ListView):
     model = Technology
@@ -24,6 +26,8 @@ class TechnologyListView(ListView):
             
         context['projects'] = Project.objects.filter(status=True).prefetch_related('technologies', 'images').order_by('nro_orden')
         context['trabajos'] = Trabajo.objects.all().prefetch_related('puestos')
-        context['academias'] = Academia.objects.all().prefetch_related('carreras')
+        context['academias'] = Academia.objects.prefetch_related(
+            Prefetch('carreras', queryset=Carrera.objects.filter(status=True))
+        )
+        
         return context
-
