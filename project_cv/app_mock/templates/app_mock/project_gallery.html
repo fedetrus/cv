@@ -1,0 +1,26 @@
+{% extends 'app_mock/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero is-small">
+    <div class="hero-body">
+        <!-- Galería de imágenes -->
+        <div class="project-gallery">
+            <div class="columns is-multiline is-variable">
+                <div class="title">{{ project.title }}</div>
+                <div class="subtitle">{{ project.description }}</div>
+                {% for image in project.images.all %}
+                <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
+                        <a href="{{ image.image.url }}" title="{{ project.title }}">
+                            <img src="{{ image.image.url }}" alt="{{ project.title }}" class="gallery-thumb">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Botón de regreso -->
+        <a href="{% url 'main' %}" class="button is-link mt-4">Volver</a>
+    </div>
+</div>
+
+{% endblock content %}

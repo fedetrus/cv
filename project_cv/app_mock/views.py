@@ -1,7 +1,8 @@
 # app_mock/views.py
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Technology, Project, Trabajo, Academia, Carrera
 from django.db.models import Prefetch
+from django.shortcuts import get_object_or_404
 
 
 class TechnologyListView(ListView):
@@ -31,3 +32,11 @@ class TechnologyListView(ListView):
         )
         
         return context
+    
+class ProjectGalleryView(DetailView):
+    model = Project
+    template_name = 'app_mock/project_gallery.html'
+    context_object_name = 'project'
+    
+    def get_object(self, queryset=None):
+        return get_object_or_404(Project, pk=self.kwargs.get("pk"))

@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+            } else {
+                // Si NO está en la página actual, redirigir a `main.html` con el ID
+                window.location.href = `/${targetId}`;
             }
 
             // Cierra el menú en móviles si está abierto
@@ -24,4 +27,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-

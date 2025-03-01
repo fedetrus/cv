@@ -1,71 +1,51 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'app_mock/css/modal.css' %}">
-
 <div class="columns">
     {% for project in projects %}
-        <div class="column is-full">
-
-            <div class="card">
-                <div class="card-image">
-                    <figure class="image">
-                        {% with project.images.all|first as first_image %}
-                        {% if first_image %}
-                        <!-- Agregar botón para abrir el modal -->
-                        <a class="js-modal-trigger" data-target="modal-{{ project.id }}">
-                            <img src="{{ first_image.image.url }}" alt="{{ project.title }}">
-                        </a>
-                        {% endif %}
-                        {% endwith %}
-                    </figure>
-                    <p class="title is-size-3-tablet is-size-4-mobile ml-2 mt-2 mr-2">{{ project.title }}</p>
-                </div>
-
-                <div class="card-content p-2">
-                    <div class="container">
-                        <div class="subtitle is-5">
-                            {{ project.description }}
-                        </div>
-                        <div class="title is-size-4-tablet is-size-4-mobile my-4">
-                            Tecnologías principales:
-                        </div>
-                        <div class="container mt-1 is-flex is-flex-wrap-wrap is-justify-content-center">
-                            {% for tech in project.technologies.all %}
-                            <div class="mx-1 is-flex is-flex-direction-column is-align-items-center">
-                                <figure
-                                    class="image is-32x32 {% if tech.name == 'djangoREST' %}has-background-grey-lighter{% endif %}">
-                                    <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
-                                </figure>
-                                <div class="subtitle is-size-5-tablet is-hidden-mobile">{{ tech.name|capfirst }}</div>
-                                <p class="is-hidden-tablet">{{ tech.name|capfirst }}</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+    <div class="column is-full">
+        <!-- Envolver la card en un <a> para que toda la card sea clickeable -->
+        <a href="{% url 'project_gallery' project.pk %}" class="card-link">
+        <div class="card">
+            <div class="card-image">
+                <figure class="image">
+                    {% with project.images.all|first as first_image %}
+                    {% if first_image %}
+                    <!-- Link a la galería -->
+             
+                        <img src="{{ first_image.image.url }}" alt="{{ project.title }}">
+                
+                    {% endif %}
+                    {% endwith %}
+                </figure>
+                <p class="title is-size-3-tablet is-size-4-mobile ml-2 mt-2 mr-2">
+                    {{ project.title }}
+                </p>
             </div>
 
-            <!-- Modal para la imagen -->
-            <div id="modal-{{ project.id }}" class="modal">
-                <div class="modal-background"></div>
-                <div class="modal-content" style="width: 90%;">
-                    <!-- Contenedor de las imágenes con un ID único -->
-                    <div class="image-slider" id="slider-{{ project.id }}">
-                        {% for image in project.images.all %}
-                        <figure class="image slider-item"
-                            {% if forloop.first %}style="display: block"{% else %}style="display: none"{% endif %}>
-                            <img src="{{ image.image.url }}" alt="{{ project.title }}">
-                        </figure>
-                        {% endfor %}
-                    </div>
-                    <!-- Contenedor para las flechas debajo de la imagen -->
-                    <div class="slider-buttons">
-                        <button class="slider-prev" data-project="{{ project.id }}">&#10094;</button>
-                        <button class="slider-next" data-project="{{ project.id }}">&#10095;</button>
-                    </div>
+            <div class="card-content p-2">
+                <div class="subtitle is-5">
+                    {% with project.description.split|slice:":20"|join:" " as short_description %}
+                        {{ short_description }}{% if project.description.split|length > 10 %}...{% endif %}
+                    {% endwith %}
                 </div>
-                <button class="modal-close is-large" aria-label="close"></button>
+                <div class="title is-size-4-tablet is-size-4-mobile my-4">
+                    Tecnologías principales:
+                </div>
+                <div class="container mt-1 is-flex is-flex-wrap-wrap is-justify-content-center">
+                    {% for tech in project.technologies.all %}
+                    <div class="mx-1 is-flex is-flex-direction-column is-align-items-center">
+                        <figure
+                            class="image is-32x32 {% if tech.name == 'djangoREST' %}has-background-grey-lighter{% endif %}">
+                            <img src="{{ tech.logo.url }}" alt="{{ tech.name }}">
+                        </figure>
+                        <div class="subtitle is-size-5-tablet is-hidden-mobile">{{ tech.name|capfirst }}</div>
+                        <p class="is-hidden-tablet">{{ tech.name|capfirst }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
+        </a>
+    </div>
     {% endfor %}
 </div>

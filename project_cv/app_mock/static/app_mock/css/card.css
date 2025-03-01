@@ -1,0 +1,17 @@
+/* Hace que el enlace de la card no tenga estilos predeterminados */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Efecto de acercamiento al hacer hover */
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Efecto hover: acercamiento y sombra */
+.card-link:hover .card {
+    transform: scale(1.1);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
