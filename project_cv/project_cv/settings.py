@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,16 +21,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-32u4gify(chv9q&wb67t52jh3szx59$_vwbddl-w8f$vat1-k@'
+# Cargar variables desde el archivo .env
+load_dotenv()
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-if DEBUG:
-    ALLOWED_HOSTS = ['*']
-else:
-     ALLOWED_HOSTS = ['djangofedetrus.pythonanywhere.com','localhost','127.0.0.1']
+# Cargar SECRET_KEY desde .env (Si no se encuentra, lanza error)
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+# Cargar DEBUG como booleano
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+
+# Cargar ALLOWED_HOSTS desde .env
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(',')
+
+print(f'DEBUG: {DEBUG}')
+print(f'SECRET_KEY: {SECRET_KEY}')
+print(f'ALLOWED_HOSTS: {ALLOWED_HOSTS}')
 
 # Application definition
 
