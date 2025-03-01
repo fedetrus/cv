@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # Cargar variables desde el archivo .env
-load_dotenv()
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -34,10 +34,6 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 # Cargar ALLOWED_HOSTS desde .env
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(',')
-
-print(f'DEBUG: {DEBUG}')
-print(f'SECRET_KEY: {SECRET_KEY}')
-print(f'ALLOWED_HOSTS: {ALLOWED_HOSTS}')
 
 # Application definition
 
