@@ -1,0 +1,12 @@
+.gallery-thumb {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.gallery-thumb:hover {
+  transform: scale(1.1);
+}

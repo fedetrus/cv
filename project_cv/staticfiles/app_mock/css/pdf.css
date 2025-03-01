@@ -1,0 +1,62 @@
+@media print {
+    /* Ocultar navbar y footer */
+    .navbar, .footer, .no-print {
+        display: none !important;
+    }
+
+    /* Asegurar que el fondo y colores se respeten */
+    html, body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .hero {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Mantener los colores originales de Bulma en textos y botones */
+    * {
+        background: transparent !important;
+        color: inherit !important;
+        mix-blend-mode: normal !important;
+    }
+
+    /* Mantener los estilos de los enlaces y botones */
+    a, button {
+        color: inherit !important;
+        background-color: inherit !important;
+        border-color: inherit !important;
+    }
+
+    /* Reforzar los colores de elementos destacados */
+    .has-text-primary {
+        color: hsl(171, 100%, 41%) !important; /* Verde de Bulma */
+    }
+
+    .has-text-danger {
+        color: hsl(348, 100%, 61%) !important; /* Rojo de Bulma */
+    }
+
+    .has-text-warning {
+        color: hsl(48, 100%, 67%) !important; /* Amarillo de Bulma */
+    }
+
+    .has-text-info {
+        color: hsl(204, 86%, 53%) !important; /* Azul de Bulma */
+    }
+
+    .has-text-success {
+        color: hsl(141, 71%, 48%) !important; /* Verde claro de Bulma */
+    }
+
+    .has-text-link {
+        color: hsl(217, 71%, 53%) !important; /* Verde claro de Bulma */
+    }
+
+    /* Si se está imprimiendo en modo Dark */
+    html[data-theme="dark"] {
+        background: hsl(0, 0%, 7%) !important;
+        color: hsl(0, 0%, 71%) !important;
+    }
+}

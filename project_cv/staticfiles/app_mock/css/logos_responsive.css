@@ -1,0 +1,19 @@
+/* Tamaño en mobile (hasta 1023px) */
+@media screen and (max-width: 1023px) {
+  .responsive-image img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+/* Tamaño en desktop (desde 1024px en adelante) */
+@media screen and (min-width: 1024px) {
+  .responsive-image img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+}
+
+
+
+  

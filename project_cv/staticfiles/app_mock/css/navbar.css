@@ -1,0 +1,38 @@
+/* Estilos generales (afectan desktop) */
+.navbar-menu {
+  display: flex; /* En desktop, mantén el diseño horizontal */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.navbar-start {
+  flex-grow: 1; /* Permite que los items usen el espacio */
+  justify-content: space-evenly; /* Distribuye uniformemente */
+}
+
+/* Solo en mobile: animación de deslizamiento */
+@media screen and (max-width: 1023px) {  
+  .navbar-menu {
+    display: block !important; /* Sobreescribir lo que Bulma oculta en mobile */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 3.25rem; /* Ajusta a la altura real del navbar */
+
+    /* Oculto por defecto */
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Animación de apertura en mobile */
+  .navbar-menu.is-active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
