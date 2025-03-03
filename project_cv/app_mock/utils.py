@@ -21,8 +21,7 @@ def generate_pdf(request):
         
     # Nombre del archivo PDF con fecha
     fecha_actual = datetime.now().strftime("%d-%m-%Y")
-    version = "Light" if is_light else "Dark"
-    pdf_filename = f"CV_Federico-Suarez_{version}_{fecha_actual}.pdf"
+    pdf_filename = f"CV_Federico-Suarez_{fecha_actual}.pdf"
 
     # Crear un archivo temporal para el PDF
     pdf_path = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf").name
