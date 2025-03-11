@@ -1,3 +1,4 @@
+
 import subprocess
 from django.http import HttpResponse
 import tempfile
@@ -12,13 +13,12 @@ def generate_pdf(request):
     is_light = request.GET.get("light", "false").lower() == "true"
 
     # Script que forzará el cambio de tema antes de la conversión
-    theme_script = "document.documentElement.setAttribute('data-theme', 'light');" if is_light else "document.documentElement.setAttribute('data-theme', 'dark');"
-
-    # Script que ajustará el ancho de la columna para el PDF
-    width_script = "document.querySelector('.column').classList.remove('is-10'); document.querySelector('.column').classList.add('is-12');"
-
-
-
+    js_script = ""
+    if is_light:
+        js_script = "document.documentElement.setAttribute('data-theme', 'light');"
+    else:
+        js_script = "document.documentElement.setAttribute('data-theme', 'dark');"
+        
     # Nombre del archivo PDF con fecha
     fecha_actual = datetime.now().strftime("%d-%m-%Y")
     pdf_filename = f"CV_Federico-Suarez_{fecha_actual}.pdf"
@@ -26,14 +26,14 @@ def generate_pdf(request):
     # Crear un archivo temporal para el PDF
     pdf_path = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf").name
 
-    # Ejecutar wkhtmltopdf con el script para cambiar el tema y la columna
+    # Ejecutar wkhtmltopdf con JS para forzar el tema Light si corresponde
     command = [
         "wkhtmltopdf",
         "--page-width", "1800px",
         "--page-height", "3500px",
         "--enable-javascript",
-        "--javascript-delay", "2000",  # Tiempo de espera para aplicar cambios
-        "--run-script", f"{theme_script} {width_script}",  # Ejecuta ambos scripts
+        "--javascript-delay", "1500",  # Tiempo de espera para que Bulma aplique los estilos
+        "--run-script", js_script,
         url,
         pdf_path
     ]
